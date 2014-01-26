@@ -186,6 +186,20 @@
  *  |               --------- progressive
  *  |               |
  *  |               --------- aspect
+ *  |
+ *  ---------- fb
+ *  |           |
+ *  |           --------- 3dmode   
+ *  |           |
+ *  |           --------- znorm
+ *  |           |
+ *  |           --------- dst_left   \
+ *  |           |                     |
+ *  |           --------- dst_top     | 
+ *  |           |                      >  PIG WINDOW SIZE AND POSITION
+ *  |           --------- dst_width   |
+ *  |           |                     |
+ *  |           --------- dst_height /
  *
  */
 
@@ -572,6 +586,10 @@ struct ProcStructure_s e2Proc[] =
 	{cProcEntry, "stb/denc/0/wss"                                                   , NULL, NULL, NULL, NULL, ""},
 
 	{cProcDir  , "stb/fb"                                                           , NULL, NULL, NULL, NULL, ""},
+	{cProcEntry, "stb/fb/dst_left"                                                  , NULL, NULL, NULL, NULL, ""},
+	{cProcEntry, "stb/fb/dst_top"                                                   , NULL, NULL, NULL, NULL, ""},
+	{cProcEntry, "stb/fb/dst_width"                                                 , NULL, NULL, NULL, NULL, ""},
+	{cProcEntry, "stb/fb/dst_height"                                                , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/fb/3dmode"                                                    , NULL, three_d_mode_read, three_d_mode_write, NULL, ""},
 	{cProcEntry, "stb/fb/znorm"                                                     , NULL, NULL, default_write_proc, NULL, ""},
 
