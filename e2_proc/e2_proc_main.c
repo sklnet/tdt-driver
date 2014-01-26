@@ -137,6 +137,7 @@
  *  ---------- info
  *  |           |
  *  |           --------- model <- Version String of out Box
+ *  |           --------- chipset <- Version String of chipset
  *  |
  *  ---------- tsmux
  *  |           |
@@ -297,6 +298,32 @@ static int info_model_read(char *page, char **start, off_t off, int count,
   int len = sprintf(page, "ufs910\n");
 #endif
 
+  return len;
+}
+
+static int info_chipset_read(char *page, char **start, off_t off, int count,
+                           int *eof, void *data)
+{
+#if defined(SPARK)
+  int len = sprintf(page, "STi7111\n");
+#elif defined(SPARK7162)
+  int len = sprintf(page, "STi7162\n");
+#else
+  int len = sprintf(page, "unknown\n");
+#endif
+  return len;
+}
+
+static int info_boxtype_read(char *page, char **start, off_t off, int count,
+                           int *eof, void *data)
+{
+#if defined(SPARK)
+  int len = sprintf(page, "spark\n");
+#elif defined(SPARK7162)
+  int len = sprintf(page, "spark7162\n");
+#else
+  int len = sprintf(page, "unknown\n");
+#endif
   return len;
 }
 
@@ -508,6 +535,8 @@ struct ProcStructure_s e2Proc[] =
 
 	{cProcDir  , "stb/info"                                                         , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/info/model"                                                   , NULL, info_model_read, NULL, NULL, ""},
+	{cProcEntry, "stb/info/chipset"                                                 , NULL, info_chipset_read, NULL, NULL, ""},
+	{cProcEntry, "stb/info/boxtype"                                                 , NULL, info_boxtype_read, NULL, NULL, ""},
 
 	{cProcDir  , "stb/video"                                                        , NULL, NULL, NULL, NULL, ""},
 	{cProcEntry, "stb/video/alpha"                                                  , NULL, NULL, NULL, NULL, ""},
