@@ -954,7 +954,7 @@ static int __init aotom_init_module(void)
 		led_state[i].period = 0;
 		led_state[i].stop = 1;
 		sema_init(&led_state[i].led_sem, 0);
-		led_state[i].led_task = kthread_run(led_thread, (void *) i, "led thread");
+		led_state[i].led_task = kthread_run(led_thread, (void *) i, "led_thread");
 	}
 
 
